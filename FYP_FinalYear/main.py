@@ -3,6 +3,7 @@ from tkinter import messagebox
 from genetic_algorithm import Genetic_algorithm
 from gru_model import SymbolicRegressionGRU
 from preprocessing import Preprocessing
+from trafficModel import TrafficGUI
 
 def main():
     # Get input data
@@ -19,8 +20,9 @@ def main():
     best_individual = Genetic_algorithm.optimize()
 
     # Load trained model
-    model = SymbolicRegressionGRU(input_size=processed_input.shape[1])  # Assuming input_size is determined by processed_input
-
+    model = TrafficGUI(SymbolicRegressionGRU, data_path)
+    prediction = model.predict('2022-01-01')
+    print(f"The predicted traffic volume for 2022-01-01 is: {prediction}")
     # Use the best individual to set model parameters or hyperparameters
     # model_parameters = ...
 

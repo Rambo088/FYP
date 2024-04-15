@@ -1,5 +1,3 @@
-# gru_model.py
-
 import torch.nn as nn
 import torch.optim as optim
 from keras.models import Sequential
