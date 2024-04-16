@@ -23,6 +23,9 @@ class Preprocessing:
 
         X = self.data.drop(['DateTime', 'Vehicles'], axis=1).values
 
+        num_input_features = X.shape[1]
+        print("Number of input features:", num_input_features)
+
         # Standardize features
         self.scaler = StandardScaler()
         X = self.scaler.fit_transform(X)
@@ -53,7 +56,7 @@ class Preprocessing:
         input_df["Hour"] = input_df['DateTime'].dt.hour
 
         # Perform one-hot encoding for the 'Day' column
-        input_df = pd.get_dummies(input_df, columns=["Day"])
+        #input_df = pd.get_dummies(input_df, columns=["Day"])
 
         # Ensure all columns in the original data are present in input_df
         missing_cols = set(self.data.columns) - set(input_df.columns)
@@ -64,8 +67,11 @@ class Preprocessing:
         input_df = input_df[self.data.columns]
 
         # Standardize features using the same scaler as in preprocess_data
-        input_array = input_df.drop('DateTime', axis=1).values
+        input_array = input_df.drop(['DateTime', 'Vehicles'], axis=1).values
         input_array = self.scaler.transform(input_array)
+
+
+
 
         return input_array
 
