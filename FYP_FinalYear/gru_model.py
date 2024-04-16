@@ -1,3 +1,6 @@
+import pdb
+import numpy as np
+import torch
 import torch.nn as nn
 import torch.optim as optim
 from keras.models import Sequential
@@ -22,10 +25,27 @@ class SymbolicRegressionGRU(nn.Module):
         self.fc = nn.Linear(50, 1)
 
     def forward(self, x):
-        x = x.unsqueeze(-1)  # Add an extra dimension for GRU input if necessary
+        # No need to add an extra dimension here as it's already handled in preprocess_input
         out, _ = self.gru(x)
         out = self.fc(out[:, -1, :])
         return out
+
+    def predict(self, x):
+        # Convert numpy array to PyTorch tensor if necessary
+        if isinstance(x, np.ndarray):
+            x = torch.from_numpy(x).float()
+
+        # Add an extra dimension for GRU input if necessary
+        if len(x.shape) == 2:
+            x = x.unsqueeze(-1)
+
+        # Ensure the model is in evaluation mode
+        self.eval()
+
+        # Perform the forward pass and return the prediction
+        with torch.no_grad():
+            prediction = self.forward(x)
+        return prediction
 
 
 def GRU_model(X_Train, y_Train, X_Test, y_Test):
