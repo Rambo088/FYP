@@ -1,6 +1,8 @@
 import tkinter as tk
-from tkinter import messagebox
-from genetic_algorithm import Genetic_algorithm
+from tkinter import ttk
+
+import torch
+from tkcalendar import Calendar
 from gru_model import SymbolicRegressionGRU
 from preprocessing import Preprocessing
 
