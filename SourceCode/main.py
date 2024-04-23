@@ -3,7 +3,7 @@ from preprocess import DataProcessor
 from train_model import TrafficGRUModel
 
 def main():
-    # Load your dataset
+    # Load the dataset
     data_path = r"C:\Users\rayan\OneDrive\Documents\Year-3\Semester 1\Individual Project\Datasets\traffic.csv"
     data = pd.read_csv(data_path)
 
