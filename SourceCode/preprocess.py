@@ -7,7 +7,7 @@ class DataProcessor:
         self.data = data
 
     def preprocess_data(data):
-        # Assuming 'DateTime' column is in the format of 'yyyy-mm-dd hh:mm:ss'
+        # 'yyyy-mm-dd hh:mm:ss'
         data['DateTime'] = pd.to_datetime(data['DateTime'])
         # Extracting features from datetime
         data['hour'] = data['DateTime'].dt.hour
