@@ -2,7 +2,6 @@ import pandas as pd
 from tensorflow.keras.models import load_model
 
 def preprocess_data(data):
-    # Assuming 'DateTime' column is in the format of 'yyyy-mm-dd hh:mm:ss'
     data['DateTime'] = pd.to_datetime(data['DateTime'])
     # Extracting features from datetime
     data['hour'] = data['DateTime'].dt.hour
@@ -12,7 +11,7 @@ def preprocess_data(data):
     data.drop(columns=['ID'], inplace=True)
     return data
 
-# Load your dataset
+# Load the dataset
 data_path = r"C:\Users\rayan\OneDrive\Documents\Year-3\Semester 1\Individual Project\Datasets\traffic.csv"
 data = pd.read_csv(data_path)
 # Preprocess data
