@@ -11,8 +11,6 @@ class GeneticAlgorithm:
     def initialize_population(self):
         population = []
         for _ in range(self.population_size):
-            # Randomly generate hyperparameters
-            # Example: {'units': np.random.randint(50, 200), 'dropout': np.random.uniform(0.1, 0.5)}
             hyperparameters = {'units': np.random.randint(50, 200), 'dropout': np.random.uniform(0.1, 0.5)}
             population.append(hyperparameters)
         return population
@@ -57,7 +55,6 @@ class GeneticAlgorithm:
         best_hyperparameters = population[0]
         return best_hyperparameters
 
-# Example usage
 data_path = r"C:\Users\rayan\OneDrive\Documents\Year-3\Semester 1\Individual Project\Datasets\traffic.csv"
 traffic_model = TrafficGRUModel(data_path)
 X_train, y_train = traffic_model.preprocess_data()
